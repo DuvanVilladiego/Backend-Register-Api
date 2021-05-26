@@ -8,15 +8,14 @@ const userSchema = new mongoose.Schema({
     password: String,
     confirm_pass: String,
     date: {type: Date, default: Date.now},
-    profile_picture: String,
 })
 
-userSchema.methods.generateJWT = () => {
+userSchema.methods.generateJWT = function () {
     return jwt.sign({
         _id:this._id,
         name:this.name,
         iat:moment().unix()
-    }, "SecrectJWT")
+    }, "secretJWT")
 }
 
 
